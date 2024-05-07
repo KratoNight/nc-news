@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getArticleById } from "../utils/api";
+import CommentsList from "./CommentsList";
 
 export default function IndivdualArticle() {
   const [article, setArticle] = useState(null);
@@ -23,6 +24,9 @@ export default function IndivdualArticle() {
       <p>Topic: {article.topic}</p>
       <p>Author: {article.author}</p>
       <p>{article.body}</p>
+      <section>
+        <CommentsList articleId={articleId} />
+      </section>
     </article>
   );
 }
