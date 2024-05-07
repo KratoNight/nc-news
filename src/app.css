@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: rgba(144, 102, 184, 0.753);
+  color: #fff;
+  text-align: center;
+}
+a {
+  color: red;
+  text-decoration: none;
+  text-align: left;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+a:hover {
+  color: #fff;
+}
+img {
+  width: 50%;
+  height: 50%;
+}
+ul {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0;
+}
+.Title {
+font-size: 40px;
+}
