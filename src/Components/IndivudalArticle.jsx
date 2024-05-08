@@ -11,7 +11,7 @@ export default function IndivdualArticle() {
     getArticleById(articleId).then(({ article }) => {
       setArticle(article);
     });
-  }, [articleId]);
+  }, []);
 
   if (!article) {
     return <div>Loading...</div>;

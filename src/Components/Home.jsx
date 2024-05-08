@@ -1,10 +1,9 @@
 import ArticleList from "./ArticleList";
 
-function Home() {
+export default function Home() {
   return (
     <section>
       <ArticleList />
     </section>
   );
 }
-export default Home;
