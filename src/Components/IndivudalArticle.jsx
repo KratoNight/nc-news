@@ -1,17 +1,31 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getArticleById } from "../utils/api";
+import { getArticleById, patchArticleVote } from "../utils/api";
 import CommentsList from "./CommentsList";
 
 export default function IndivdualArticle() {
   const [article, setArticle] = useState(null);
+  const [voteCount, setVoteCount] = useState(null);
   const { articleId } = useParams();
+
+  const handleVote = (updateVote) => {
+    setVoteCount((currentCount) => {
+      return currentCount + updateVote;
+    });
+    patchArticleVote(article.article_id, updateVote).catch((err) => {
+      setVoteCount((currentCount) => {
+        return currentCount - updateVote;
+      });
+      alert('Can\'t update Vote, Try again later!')
+    });
+  };
 
   useEffect(() => {
     getArticleById(articleId).then(({ article }) => {
       setArticle(article);
+      setVoteCount(article.votes);
     });
-  }, [articleId]);
+  }, []);
 
   if (!article) {
     return <div>Loading...</div>;
@@ -24,6 +38,12 @@ export default function IndivdualArticle() {
       <p>Topic: {article.topic}</p>
       <p>Author: {article.author}</p>
       <p>{article.body}</p>
+      <div>
+        <span>Votes: {voteCount}</span>
+        <button onClick={() => handleVote(1)}>+</button>
+        <button onClick={() => handleVote(-1)}>-</button>
+      </div>
+      <p>Comments: {article.comment_count}</p>
       <section>
         <CommentsList articleId={articleId} />
       </section>
