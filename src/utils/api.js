@@ -34,3 +34,14 @@ export function getArticleById(articleId) {
         console.error(err);
       });
   }
+  export function patchArticleVote(articleId, updateVote) {
+    return myNcApi
+      .patch(`/api/articles/${articleId}`, { inc_votes: updateVote })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        return Promise.reject(err);
+      });
+  }
