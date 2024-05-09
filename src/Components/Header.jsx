@@ -12,6 +12,9 @@ export default function Header(){
                 <Link to="/articles">
                   <p className="navLinks">Articles</p>
                 </Link>
+                <Link to="/topics">
+                  <p>Topics</p>
+                </Link>
               </nav>
             </div>
             <div className="Title">
