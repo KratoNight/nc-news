@@ -45,3 +45,13 @@ export function getArticleById(articleId) {
         return Promise.reject(err);
       });
   }
+  export function postComment(articleId, username, body) {
+    return myNcApi
+      .post(`/api/articles/${articleId}/comments`, {username, body})
+      .then((response) => {
+        return response.data.comment
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }

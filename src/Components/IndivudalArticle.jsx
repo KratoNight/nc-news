@@ -8,7 +8,7 @@ export default function IndivdualArticle() {
   const [voteCount, setVoteCount] = useState(null);
   const { articleId } = useParams();
 
-  const handleVote = (updateVote) => {
+  function handleVote(updateVote){
     setVoteCount((currentCount) => {
       return currentCount + updateVote;
     });
