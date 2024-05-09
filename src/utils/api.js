@@ -34,6 +34,24 @@ export function getArticleById(articleId) {
         console.error(err);
       });
   }
+  export function getTopics() {
+    return myNcApi
+      .get(`/api/topics`)
+      .then((response) => {
+        return response.data.topics;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  export function getArticlesByTopic(topicSlug) {
+    return myNcApi
+      .get(`/api/articles?topic=${topicSlug}`)
+      .then((response) => {
+        return response.data.articles;
+      })
+      .catch((err) => console.log(err));
+  }
   export function patchArticleVote(articleId, updateVote) {
     return myNcApi
       .patch(`/api/articles/${articleId}`, { inc_votes: updateVote })
@@ -66,3 +84,5 @@ export function getArticleById(articleId) {
         console.error(err);
       });
   }
+
+  
