@@ -55,3 +55,14 @@ export function getArticleById(articleId) {
         console.log(err)
       })
   }
+
+  export function deleteComment(commentId) {
+    return myNcApi
+      .delete(`/api/comments/${commentId}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
