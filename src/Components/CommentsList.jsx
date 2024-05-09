@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { getCommentsByArticleId, postComment } from "../utils/api";
+import { getCommentsByArticleId, postComment, deleteComment } from "../utils/api";
 import CommentCard from "./CommentCard";
 
 export default function CommentsList({ articleId }) {
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState("");
+
+  const loggedInUsername = "weegembump";
 
   function handleSubmit(event) {
     const loggedInUsername = "weegembump";
@@ -33,6 +35,20 @@ export default function CommentsList({ articleId }) {
     });
   }, []);
 
+  function delComment(commentId){
+    deleteComment(commentId)
+      .then(() => {
+        setComments(
+          comments.filter((comment) => comment.comment_id !== commentId)
+        );
+      })
+      .catch((err) => {
+        alert("Failed to delete comment!");
+      });
+  };
+
+
+
   return (
     <div>
         <section>
@@ -50,9 +66,14 @@ export default function CommentsList({ articleId }) {
       </section>
       <h3>Comments</h3>
       <ul>
-        {comments.map((comment) => {
-          return <CommentCard key={comment.comment_id} comment={comment} />;
-        })}
+      {comments.map((comment, index) => (
+          <CommentCard
+            key={index}
+            comment={comment}
+            delComment={delComment}
+            loggedInUsername={loggedInUsername}
+          />
+        ))}
       </ul>
     </div>
   );
